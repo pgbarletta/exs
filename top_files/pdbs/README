@@ -1,0 +1,63 @@
+treatment p/ preparar .prmtop and .rst7:
+---------------------------------------
+
+1hvr:
+-----
+    pdb4amber -i 1hvr_head.pdb -o 1hvr.pdb --dry --reduce
+    created "tleap_join_1hvr-cso.in" and ran:      tleap -f tleap_join_1hvr-cso.in
+    pytleap --prot 1hvr_apo.pdb --lig xk2.sdf --cplx 1hvr_hol --pfrc protein.ff14SB
+    this will fail. Add these 2 lines at the start of the "leap.cmd" file:
+                        loadamberprep CSO.prepin
+                        loadamberparams frcmod.CSO
+    
+    mv leap.cmd leap_join_1hvr-xk2.in
+    tleap -f leap_join_1hvr-xk2.in
+    cp leap_join_1hvr-xk2.in leap_apo_final. Modify to solvate, add ions and to output pretty filenames
+    cp leap_join_1hvr-xk2.in leap_hol_final. Modify to solvate, add ions, add xk2 and to output pretty filenames
+
+    tleap -f leap_apo_final
+    tleap -f leap_hol_final
+
+    DONE!
+
+xk2:
+---
+    mv 1hvr_nonprot.pdb xk2.pdb
+    deleted CSO residue from xk2.pdb. Only "xk2" left
+    babel -ipdb xk2.pdb -osdf xk2.sdf
+    pytleap --prot 1hvr_apo.pdb --lig xk2.sdf --cplx 1hvr_hol --pfrc protein.ff14SB
+
+
+cso:
+----
+    wget https://files.rcsb.org/ligands/view/CSO.cif 
+    antechamber -fi ccif -i CSO.cif -bk CSO -fo ac -o CSO.ac -c bcc -at amber
+    created "CSO.mc"
+    prepgen -i CSO.ac -o CSO.prepin -m CSO.mc -rn CSO
+    parmchk2 -i CSO.prepin -f prepi -o frcmod.CSO -a Y -p /opt/amber16/dat/leap/parm/parm10.dat
+    grep -v ATTN frcmod.CSO > frcmod1.CSO
+    parmchk2 -i CSO.prepin -f prepi -o frcmod2.CSO
+    replaced all "ATTN" parameters in "frcmod.CSO" with corresponding parameters in "frcmod2.CSO" obtained from GAFF
+    replaced all "NT" for "N " in "frcmod.CSO" and "CSO.prepin"
+    created "leap_join_1hvr-cso.in"
+    tleap -f leap_join_1hvr-cso.in
+
+
+--------------------------------------------------------------------------------
+
+1prn:
+-----
+    pdb4amber -i 1PRN.pdb -o 1prn.pdb --reduce &> logfile_pdb4amber_1prn
+    delete C8 ligand from "1prn.pdb"
+    wrote and run "leap_1prn.in". logfile in "leap.log"
+    wrote and run "dry_leap_1prn.in". logfile in "leap.log". Just to get 1prn_redry.prmtop and 1prn_redry.rst7 without any water.
+        1prn_dry.prmtop and 1prn_dry.rst7 are not dry, just before waterbox and ions were added
+
+
+256L:
+-----
+    pdb4amber -i 256L.pdb -o 256l.pdb --reduce &> logfile_pdb4amber_256l
+    cp 256l.pdb 256l_dry.pdb   and removed the waters
+    wrote and run "leap_256l.in". logfile in "leap.log"
+    wrote and run "dry_leap_256l.in". logfile in "leap.log". Just to get 256l_redry.prmtop and 256l_redry.rst7 without any water.
+        256l_dry.prmtop and 256l_dry.rst7 are not dry, just before waterbox and ions were added
