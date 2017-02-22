@@ -15,4 +15,6 @@ modevectors("cut_avg_256l", "disp_avg_256l", head=.7, tail=0.2, head_length=1.2,
 
 cmd.hide('''cartoon''', '''resi 59+60+61+92+93+94+133+134''' )
 
+cmd.set('''ray_opaque_background''', '''off''')
+
 cmd.png("4d-porc_256l.png", width=3600, height=2300, dpi=600, ray=1)
