@@ -13,4 +13,4 @@ cmd.set_view ( '''0.705788314,   -0.370076984,   -0.604060292,\
 
 modevectors("avg_1prn", "disp_avg_1prn", head=.7, tail=0.2, head_length=1.2, headrgb=".25,.5,.8", tailrgb=".25,.5,.8", cutoff=1.5)
 
-cmd.png("4c-porc_1prn.png", width=3600, height=2300, dpi=600, ray=1)
+cmd.png("4c-porc_1prn.png", width=1800, height=1100, dpi=600, ray=1)

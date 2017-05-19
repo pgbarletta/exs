@@ -13,9 +13,8 @@ cmd.set_view ( '''0.634891212,    0.608652472,    0.475852638,\
    130.975585938,  213.611175537,  -20.000000000''' )
 
 
-modevectors("cut_avg_1m14", "disp_avg_1m14", head=.7, tail=0.2, head_length=1.2, headrgb="1.0,0.0,0.0", tailrgb="1.0,0.0,0.0", cutoff=1.55)
+modevectors("cut_avg_1m14", "disp_avg_1m14", head=.7, tail=0.2, head_length=1.2, headrgb="1.0,0.0,0.0", tailrgb="1.0,0.0,0.0", cutoff=1.7)
 
-cmd.set('''ray_opaque_background''', '''off''')
 cmd.color("deepsalmon", "pock_1m14_1")
 cmd.color("skyblue", "cut_avg_1m14")
 cmd.set("cartoon_fancy_helices", 1)
@@ -23,6 +22,7 @@ cmd.set("ray_trace_mode",  1)
 cmd.set("two_sided_lighting", "on")
 cmd.set("reflect", 0)
 cmd.set("ambient", 0.5)
+cmd.set("ray_trace_mode",  0)
+cmd.set('''ray_opaque_background''', '''off''')
 
-
-cmd.png("4c-porc_1m14.png", width=3600, height=2300, dpi=600, ray=1)
+cmd.png("4c-porc_1m14.png", width=1800, height=1100, dpi=600, ray=1)

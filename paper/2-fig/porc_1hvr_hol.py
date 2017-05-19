@@ -13,7 +13,6 @@ cmd.set_view ( '''-0.554374218,    0.354257464,    0.753099322,\
 cmd.hide("lines")
 cmd.show("cartoon")
 cmd.show("sticks", "resn LIG") 
-cmd.set('''ray_opaque_background''', '''off''')
 cmd.color("skyblue", "avg_1hvr_hol")
 cmd.color("ruby", "resn LIG")
 cmd.set("cartoon_fancy_helices", 1)
@@ -21,6 +20,8 @@ cmd.set("ray_trace_mode",  1)
 cmd.set("two_sided_lighting", "on")
 cmd.set("reflect", 0)
 cmd.set("ambient", 0.5)
+cmd.set("ray_trace_mode",  0)
+cmd.set('''ray_opaque_background''', '''off''')
 
 
-cmd.png("2b--fig_1hvr_hol.png", width=3600, height=2300, dpi=600, ray=1)
+cmd.png("2b--fig_1hvr_hol.png", width=1800, height=1100, dpi=600, ray=1)

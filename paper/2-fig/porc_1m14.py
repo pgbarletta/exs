@@ -12,13 +12,14 @@ cmd.set_view ( '''0.634891212,    0.608652472,    0.475852638,\
 
 cmd.hide("lines")
 cmd.show("cartoon")
-cmd.set('''ray_opaque_background''', '''off''')
 cmd.color("skyblue", "cut_avg_1m14")
 cmd.set("cartoon_fancy_helices", 1)
 cmd.set("ray_trace_mode",  1)
 cmd.set("two_sided_lighting", "on")
 cmd.set("reflect", 0)
 cmd.set("ambient", 0.5)
+cmd.set("ray_trace_mode",  0)
+cmd.set('''ray_opaque_background''', '''off''')
 
 
-cmd.png("2c--fig_1m14.png", width=3600, height=2300, dpi=600, ray=1)
+cmd.png("2c--fig_1m14.png", width=1800, height=1100, dpi=600, ray=1)
