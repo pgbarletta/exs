@@ -29,4 +29,4 @@ cmd.set('''ray_opaque_background''', '''off''')
 
 
 
-cmd.png("4b-porc_1hvr_hol.png", width=1800, height=1100, dpi=600, ray=1)
+#cmd.png("4b-porc_1hvr_hol.png", width=1800, height=1100, dpi=600, ray=1)
